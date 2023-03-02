@@ -150,6 +150,7 @@ public class main extends javax.swing.JFrame {
         String password = new String(contraseña.getPassword());
 
         if (usuario.equals(USUARIO) && password.equals(CONTRASENA)) {
+            contraseña.setText("");
             Usuario.ACTIVO = true;
             // si el usuario es nuevo se va registrar en la basede datos
             EnterUser nuevo = new EnterUser();
