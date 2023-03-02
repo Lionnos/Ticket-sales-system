@@ -64,7 +64,7 @@ Este proyecto fue creado por:
     * Henry Leon Hurtado, repositorio: https://github.com/Lionnos/sistema-venta-de-pasajes.git
     
     * Aron Omar Pizarro Cahuana, repositorio: 
-   
+    
     * Jaiber Zamora alvares, repositorio: 
 
 ## Licencia
