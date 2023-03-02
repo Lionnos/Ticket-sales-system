@@ -3,7 +3,7 @@
 Este es un proyecto de ejemplo en Java del modelamiento de un SISTEMA DE VENTA DE PASAJES.
 
 * El proyecto se realizo con fines academicos. 
-* El objectivo es aprender a realizar consultas mediante el lenguaje Java con la BASE DE DATOS SQLSERVER.  
+* El objectivo es aprender a realizar consultas mediante el lenguaje Java con la BASE DE DATOS SQLSERVER.
 
 ## Instalación
 
@@ -69,4 +69,4 @@ Este proyecto fue creado por:
 
 ## Licencia
 
-Licecia : FREE XD
+Licecia : FREE..
