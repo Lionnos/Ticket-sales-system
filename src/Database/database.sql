@@ -1,7 +1,7 @@
 create database dbVentaBoletos;
 
 create table Tuser (
-    idUser varchar(36) not null,
+    idUser varchar(12) not null,
     first_name varchar(100) not null,
     last_name varchar(100) not null,
     gender bit not null,
@@ -15,7 +15,7 @@ create table Tuser (
 
 
 create table Tclient (
-    idClient varchar(36) not null,
+    idClient varchar(12) not null,
     first_name varchar(100) not null,
     last_name varchar(100) not null,
     document_type varchar(50) not null,
@@ -31,8 +31,8 @@ create table Tclient (
 
 
 create table Tvehicle (
-    idVehicle varchar(6) not null,
-    description varchar(max) null,
+    idVehicle varchar(12) not null,
+    description text null,
     plate varchar(7) unique not null,
     model varchar(50) unique not null,
     seat_numbers tinyint not null, -- numero de asientos de vehiculo
@@ -43,13 +43,13 @@ create table Tvehicle (
 
 
 create table Tprogramming (
-    idProgramming varchar(6) not null,
-    idVehicle varchar(6) not null,
+    idProgramming varchar(12) not null,
+    idVehicle varchar(12) not null,
     origin varchar(50) not null, --ciudad de origen
     destination varchar(50) not null, --ciudad destino
     programming_date date not null,
     programming_hour time not null,
-    total_cost decimal(5,2) not null,
+    total_cost decimal(5,2) null,
     state bit default 1 not null,
 
     primary key (idProgramming),
@@ -59,10 +59,10 @@ create table Tprogramming (
 
 create table Tticket (
     idTicket varchar(12) not null,
-    idUser varchar(36) not null,
-    idClient varchar(36) not null,
-    idProgramming varchar(6) not null,
-    description varchar(max) null,
+    idUser varchar(12) not null,
+    idClient varchar(12) not null,
+    idProgramming varchar(12) not null,
+    description text null,
     destination varchar(50) not null,
     seat_number tinyint not null, --numero de asiento
     created_at date not null, --fecha de registro
@@ -82,11 +82,11 @@ create table Tticket (
 -- Inserciones
 INSERT INTO Tclient (idClient, first_name, last_name, document_type, document_number, ruc, business_name, gender, telephone, address)
 VALUES
-('1a2b3c4d-5e6f-7g8h-9i10j11k12l', 'John', 'Doe', 'DNI', 12345678901, NULL, NULL, 1, 123456789, '123 Main St'),
-('2m3n4o5p-6q7r-8s9t-0u1v2w3x4y5z', 'Jane', 'Smith', 'Passport', 98765432109, NULL, NULL, 0, 987654321, '456 Elm St'),
-('3a4b5c6d-7e8f-9g0h-1i2j3k4l5m6n', 'Michael', 'Johnson', 'DNI', 56789012345, NULL, NULL, 1, 567890123, '789 Oak St'),
-('4o5p6q7r-8s9t-0u1v-2w3x-4y5z6a7b8c9d', 'Emily', 'Brown', 'Passport', 65432109876, NULL, NULL, 0, 654321098, '101 Pine St'),
-('5d6e7f8g-9h0i-1j2k-3l4m-5n6o7p8q9r0s', 'David', 'Lee', 'DNI', 98765432100, 12345678901, 'ABC Corp', 1, 987654322, '222 Maple St');
+('1a2b3c4d-5e6l', 'John', 'Doe', 'DNI', 12345678901, NULL, NULL, 1, 123456789, '123 Main St'),
+('2m3n4o5p-6q7r', 'Jane', 'Smith', 'Passport', 98765432109, NULL, NULL, 0, 987654321, '456 Elm St'),
+('3a4b5c6d-7e8f', 'Michael', 'Johnson', 'DNI', 56789012345, NULL, NULL, 1, 567890123, '789 Oak St'),
+('4o5p6q7r-8s9t', 'Emily', 'Brown', 'Passport', 65432109876, NULL, NULL, 0, 654321098, '101 Pine St'),
+('5d6e7f8g-9h0i', 'David', 'Lee', 'DNI', 98765432100, 12345678901, 'ABC Corp', 1, 987654322, '222 Maple St');
 
 
 select * from Tclient

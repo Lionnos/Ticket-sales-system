@@ -1,5 +1,12 @@
 package View.Home;
 
+import View.Buses.JInternalBuses;
+import View.Inicio.JInternalInicio;
+import View.Programming.JInternalProgramming;
+import View.Reports.JInternalReport;
+import View.Tickets.JInternalTicket;
+import View.Users.JInternalUsers;
+        
 import desplazable.Desface;
 import javax.swing.*;
 import java.awt.*;
@@ -8,21 +15,15 @@ import java.awt.event.MouseEvent;
 
 public class JFrameHome extends javax.swing.JFrame {
 
-    private Desface desplace;
+    private final Desface desplace;
     private Point initialClick;
     
     
     public JFrameHome() {
         initComponents();
+        initMenu();
         this.desplace = new Desface();
-        moverVentanaConPanel(jPanel_Menu);
-
-        // Desplazar el jPanel_Menu hacia la izquierda al iniciar la aplicación
-        desplace.desplazarIzquierda(jPanel_Folding, jPanel_Folding.getX(), -180, 180, 0);
-
-        //setComponentZOrder(jDesktopPane_Fondo, 0);
-        //setComponentZOrder(jPanel_Folding, 2);
-       //setComponentZOrder(jPanel_Menu, 1);
+        moverVentanaConPanel(jPanel_Menu); // mover ventana
     }
 
     /**
@@ -36,16 +37,7 @@ public class JFrameHome extends javax.swing.JFrame {
 
         jPanel_Menu = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel_Folding = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel_NombreUsuario = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jPanel_MenuLeft = new javax.swing.JPanel();
         jPanel_Fondo = new javax.swing.JPanel();
         jDesktopPane = new javax.swing.JDesktopPane();
 
@@ -75,138 +67,27 @@ public class JFrameHome extends javax.swing.JFrame {
 
         getContentPane().add(jPanel_Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 32));
 
-        jPanel_Folding.setBackground(new java.awt.Color(44, 62, 80));
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/menu.png"))); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/home.png"))); // NOI18N
-        jLabel2.setText("Inicio");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel2.setIconTextGap(15);
-
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/client.png"))); // NOI18N
-        jLabel3.setText("Cliente");
-        jLabel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel3.setIconTextGap(15);
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/bus.png"))); // NOI18N
-        jLabel4.setText("Buses");
-        jLabel4.setToolTipText("");
-        jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel4.setIconTextGap(15);
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/calendar.png"))); // NOI18N
-        jLabel5.setText("Programación");
-        jLabel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel5.setIconTextGap(15);
-
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/ticket.png"))); // NOI18N
-        jLabel7.setText("Venta de pasajes");
-        jLabel7.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel7.setIconTextGap(15);
-
-        jLabel_NombreUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/user.png"))); // NOI18N
-        jLabel_NombreUsuario.setText("Usuario");
-
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/report.png"))); // NOI18N
-        jLabel9.setText("Reportes");
-        jLabel9.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel9.setIconTextGap(15);
-
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/info.png"))); // NOI18N
-        jLabel10.setText("Información");
-        jLabel10.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 10));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel10.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        jLabel10.setIconTextGap(15);
-
-        javax.swing.GroupLayout jPanel_FoldingLayout = new javax.swing.GroupLayout(jPanel_Folding);
-        jPanel_Folding.setLayout(jPanel_FoldingLayout);
-        jPanel_FoldingLayout.setHorizontalGroup(
-            jPanel_FoldingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel_NombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel_FoldingLayout.setVerticalGroup(
-            jPanel_FoldingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_FoldingLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel_NombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        getContentPane().add(jPanel_Folding, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 230, 740));
+        jPanel_MenuLeft.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel_MenuLeft.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel_MenuLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 32, 230, 740));
 
         jPanel_Fondo.setBackground(new java.awt.Color(51, 51, 51));
+
+        jDesktopPane.setMinimumSize(new java.awt.Dimension(1320, 738));
 
         javax.swing.GroupLayout jPanel_FondoLayout = new javax.swing.GroupLayout(jPanel_Fondo);
         jPanel_Fondo.setLayout(jPanel_FondoLayout);
         jPanel_FondoLayout.setHorizontalGroup(
             jPanel_FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_FondoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_FondoLayout.createSequentialGroup()
                 .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_FondoLayout.setVerticalGroup(
             jPanel_FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_FondoLayout.createSequentialGroup()
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_FondoLayout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jDesktopPane.getAccessibleContext().setAccessibleName("");
@@ -217,16 +98,6 @@ public class JFrameHome extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-        if(jPanel_Folding.getX() == 0){
-            desplace.desplazarIzquierda(jPanel_Folding,jPanel_Folding.getX() , -180, 10, 1);
-        }
-        else if (jPanel_Folding.getX() == -180){        
-            desplace.desplazarDerecha(jPanel_Folding,jPanel_Folding.getX() , 0, 10, 1);
-        }
-    }//GEN-LAST:event_jLabel1MouseClicked
-
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
         dispose();
@@ -234,7 +105,7 @@ public class JFrameHome extends javax.swing.JFrame {
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
         // TODO add your handling code here:
-        jPanel_Folding.setSize(new Dimension(jPanel_Folding.getWidth(),this.getHeight()));
+        //jPanel_Folding.setSize(new Dimension(jPanel_Folding.getWidth(),this.getHeight()));
     }//GEN-LAST:event_formComponentResized
 
     /**
@@ -273,7 +144,7 @@ public class JFrameHome extends javax.swing.JFrame {
     }
 
     
-    // =========================================================================
+    // =============================================================================================
     private void moverVentanaConPanel(JPanel panel) {
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -302,21 +173,158 @@ public class JFrameHome extends javax.swing.JFrame {
         });
     }
     
+    //  =========================
+    //  INTERACCIONES CON EL MENU
+    //  =========================
+    private void initMenu(){
+        menuLeft = new JPanelMenu();
+        menuLeft.setVisible(true);
+        jPanel_MenuLeft.add(menuLeft, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,230, 740));
+        
+        Inicio = new JInternalInicio();
+        User = new JInternalUsers();
+        Bus = new JInternalBuses();
+        Programming = new JInternalProgramming();
+        Ticket = new JInternalTicket();
+        Report = new JInternalReport();
+
+        slider();
+        selectTicket();
+        selectProgramming();
+        selectInicio();
+        selectUser();
+        selectBus();
+        selectReport();
+    }
+    
+    public void slider(){
+        JPanelMenu.jLabelHome.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                
+                if(jPanel_MenuLeft.getX() == -180){
+                    desplace.desplazarDerecha(jPanel_MenuLeft,jPanel_MenuLeft.getX() , 0, 10, 1);
+                }
+                else if (jPanel_MenuLeft.getX() == 0){        
+                    desplace.desplazarIzquierda(jPanel_MenuLeft,jPanel_MenuLeft.getX() , -180, 10, 1);
+                }
+            }
+        });
+    }
+
+    
+    public void selectTicket(){
+        JPanelMenu.jLabelTicket.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                configInternal(Inicio, false);                
+                configInternal(User, false);
+                configInternal(Bus, false);
+                configInternal(Programming, false);
+                configInternal(Ticket, true);
+                configInternal(Report, false);
+            }
+        });
+    }
+    
+    public void selectProgramming(){
+        JPanelMenu.jLabelProgramming.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                configInternal(Inicio, false);                
+                configInternal(User, false);
+                configInternal(Bus, false);
+                configInternal(Programming, true);
+                configInternal(Ticket, false);
+                configInternal(Report, false);
+            }
+        });
+    }
+        
+    public void selectInicio(){
+        JPanelMenu.jLabelInicio.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                configInternal(Inicio, true);                
+                configInternal(User, false);
+                configInternal(Bus, false);
+                configInternal(Programming, false);
+                configInternal(Ticket, false);
+                configInternal(Report, false);;
+            }
+        });
+    }
+
+    public void selectUser(){
+        JPanelMenu.jLabelUsers.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                configInternal(Inicio, false);                
+                configInternal(User, true);
+                configInternal(Bus, false);
+                configInternal(Programming, false);
+                configInternal(Ticket, false);
+                configInternal(Report, false);
+            }
+        });
+    }
+
+    public void selectBus(){
+        JPanelMenu.jLabelBuses.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                configInternal(Inicio, false);                
+                configInternal(User, false);
+                configInternal(Bus, true);
+                configInternal(Programming, false);
+                configInternal(Ticket, false);
+                configInternal(Report, false);
+            }
+        });
+    }
+
+    public void selectReport(){
+        JPanelMenu.jLabelReport.addMouseListener(new java.awt.event.MouseAdapter()  {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                configInternal(Inicio, false);                
+                configInternal(User, false);
+                configInternal(Bus, false);
+                configInternal(Programming, false);
+                configInternal(Ticket, false);
+                configInternal(Report, true);
+            }
+        });
+    }
+    
+    public void configInternal(JInternalFrame frame, boolean visible ){
+        frame.setLocation(0, 0);
+        //frame.setResizable(true);
+        //frame.setMaximizable(true);
+        //frame.setClosable(true);
+        //frame.setIconifiable(true);
+        frame.setVisible(visible);
+        
+        try {
+            jDesktopPane.add(frame);
+        } catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public JPanelMenu menuLeft;
+    private JInternalInicio Inicio;
+    private JInternalUsers User;
+    private JInternalBuses Bus;
+    private JInternalProgramming Programming;
+    private JInternalTicket Ticket;
+    private JInternalReport Report;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabel_NombreUsuario;
-    private javax.swing.JPanel jPanel_Folding;
     private javax.swing.JPanel jPanel_Fondo;
     private javax.swing.JPanel jPanel_Menu;
+    private javax.swing.JPanel jPanel_MenuLeft;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,48 +1,44 @@
 package Controller;
 
-import Model.Business.BusinessClient;
 import Model.Entity.Client;
+import Model.Query.QClient;
+import Model.Query.QGeneric;
 
 import java.util.List;
 
-public class ControllerClient {
+public class ClientController {
 
-    private BusinessClient businessClient;
+    private QGeneric<Client> qClient;
 
-    public ControllerClient() {
-        businessClient = new BusinessClient();
+    public ClientController() {
+        qClient = new QClient();
     }
 
     public void create(Client client) {
-        // Aquí puedes realizar validaciones u otras operaciones de lógica de negocio antes de crear el cliente
-        businessClient.create(client);
+        qClient.create(client);
     }
 
     public void update(Client client) {
-        // Aquí puedes realizar validaciones u otras operaciones de lógica de negocio antes de actualizar el cliente
-        businessClient.update(client);
+        qClient.update(client);
     }
 
     public void delete(String idClient) {
-        // Aquí puedes realizar validaciones u otras operaciones de lógica de negocio antes de eliminar el cliente
-        businessClient.delete(idClient);
+        qClient.delete(idClient);
     }
 
     public List<Client> getAll() {
-        // Aquí puedes realizar validaciones u otras operaciones de lógica de negocio antes de obtener todos los clientes
-        return businessClient.getAll();
+        return qClient.getAll();
     }
 
     public Client getById(String idClient) {
-        // Aquí puedes realizar validaciones u otras operaciones de lógica de negocio antes de obtener un cliente por su ID
-        return businessClient.getById(idClient);
+        return qClient.getById(idClient);
     }
 
  
 
     public static void main(String[] args) {
         
-        ControllerClient controllerClient = new ControllerClient();
+        ClientController controllerClient = new ClientController();
         List<Client> clients = controllerClient.getAll();
         if (clients.isEmpty()) {
             System.out.println("No hay clientes registrados.");
@@ -53,7 +49,7 @@ public class ControllerClient {
             }
         }
 
-        ControllerClient a = new ControllerClient();
+        ClientController a = new ClientController();
         a.updateClient();
     }
 
@@ -73,8 +69,8 @@ public class ControllerClient {
             "123 Main St" // address
         );
 
-        // Llamar al método create() del BusinessClient para insertar el cliente
-        businessClient.create(newClient);
+        // Llamar al método create() del qClient para insertar el cliente
+        qClient.create(newClient);
 
         System.out.println("Cliente insertado exitosamente.");
     }*/
@@ -94,8 +90,8 @@ public class ControllerClient {
             "123 Main St" // address
         );
 
-        // Llamar al método create() del BusinessClient para insertar el cliente
-        businessClient.update(newClient);
+        // Llamar al método create() del qClient para insertar el cliente
+        qClient.update(newClient);
 
         System.out.println("Cliente actualizado.");
     }
