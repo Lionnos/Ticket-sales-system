@@ -1,15 +1,22 @@
 package View.Tickets;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 public class JInternalTicket extends javax.swing.JInternalFrame {
 
-    private JPanelSaleTicket sale;
+    private JPanelSell jpanelSell;
     
     
     public JInternalTicket() {
         initComponents();
-        this.sale = new JPanelSaleTicket();
-            
+        MinibusSimulation();
     }
 
     /**
@@ -25,12 +32,11 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel_Barra = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel_Venta = new javax.swing.JLabel();
+        jLabelVenta = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jPanelBUS = new javax.swing.JPanel();
 
         setMinimumSize(new java.awt.Dimension(1320, 738));
         setPreferredSize(new java.awt.Dimension(1320, 738));
@@ -53,16 +59,16 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_Barra.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 150, 40));
 
-        jLabel_Venta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel_Venta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_Venta.setText("Venta Boletos");
-        jLabel_Venta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jLabel_Venta.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabelVenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelVenta.setText("Venta Boletos");
+        jLabelVenta.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabelVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel_VentaMouseClicked(evt);
+                jLabelVentaMouseClicked(evt);
             }
         });
-        jPanel_Barra.add(jLabel_Venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
+        jPanel_Barra.add(jLabelVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -74,41 +80,30 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel_Fondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 60, 230, -1));
+        jPanel_Fondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, 230, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("BUS :");
-        jPanel_Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 60, -1, -1));
+        jPanel_Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel_Fondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 120, 350, 510));
+        jPanelBUS.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jPanel_Fondo.add(jPanelBUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 70, 300, 600));
 
         getContentPane().add(jPanel_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel_VentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_VentaMouseClicked
+    private void jLabelVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentaMouseClicked
         // TODO add your handling code here:
         panelVenta();
-    }//GEN-LAST:event_jLabel_VentaMouseClicked
+    }//GEN-LAST:event_jLabelVentaMouseClicked
 
     private void panelVenta(){
-        //sale.setLocation(50,110);
-        sale.setVisible(true);
-        jPanel_Fondo.add(sale, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110));
+        jpanelSell = null;
+        jpanelSell = new JPanelSell();
+        jpanelSell.setVisible(true);
+        jPanel_Fondo.add(jpanelSell, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110));
 
     }
 
@@ -118,10 +113,32 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel_Venta;
+    private javax.swing.JLabel jLabelVenta;
+    private javax.swing.JPanel jPanelBUS;
     private javax.swing.JPanel jPanel_Barra;
     private javax.swing.JPanel jPanel_Fondo;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+
+    public void MinibusSimulation() {
+        jPanelBUS.setLayout(new GridLayout(7, 3, 15, 15)); // 7 filas (asientos), 3 columnas, espacio horizontal y vertical de 20 píxeles
+
+        for (int row = 1; row <= 7; row++) {
+            for (int col = 1; col <= 3; col++) {
+                int seatNumber = (row - 1) * 3 + col;
+                String seatLabel;
+                if (seatNumber - 1 == 0) {
+                    seatLabel = "Chofer";
+                } else {
+                    seatLabel = (seatNumber - 1)+"";
+                }
+                JButton seatButton = new JButton(seatLabel); // Puedes usar JLabel u otro componente según tus necesidades
+                seatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/seat.png")));
+                seatButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); // Colocar el texto a la derecha de la imagen
+                
+                seatButton.setBackground(new Color(46, 204, 113)); // Establecer el color de fondo verde con RGB
+                jPanelBUS.add(seatButton);
+            }
+        }
+    }
 }

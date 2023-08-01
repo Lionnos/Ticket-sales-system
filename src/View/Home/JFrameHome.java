@@ -299,9 +299,9 @@ public class JFrameHome extends javax.swing.JFrame {
     
     public void configInternal(JInternalFrame frame, boolean visible ){
         frame.setLocation(0, 0);
-        //frame.setResizable(true);
+        frame.setResizable(false);
         //frame.setMaximizable(true);
-        //frame.setClosable(true);
+        frame.setClosable(true);
         //frame.setIconifiable(true);
         frame.setVisible(visible);
         

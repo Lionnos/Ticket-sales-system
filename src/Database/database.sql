@@ -34,7 +34,7 @@ create table Tvehicle (
     idVehicle varchar(12) not null,
     description text null,
     plate varchar(7) unique not null,
-    model varchar(50) unique not null,
+    model varchar(50) not null,
     seat_numbers tinyint not null, -- numero de asientos de vehiculo
     state bit default 1 not null,
 
@@ -88,5 +88,10 @@ VALUES
 ('4o5p6q7r-8s9t', 'Emily', 'Brown', 'Passport', 65432109876, NULL, NULL, 0, 654321098, '101 Pine St'),
 ('5d6e7f8g-9h0i', 'David', 'Lee', 'DNI', 98765432100, 12345678901, 'ABC Corp', 1, 987654322, '222 Maple St');
 
+INSERT INTO Tuser (idUser, first_name, last_name, gender, email, username, password, created_at)
+VALUES ('ea41c2ff614f', 'Henry', 'Leon', 1, 'Ghreengate@gmail.com', 'Lionos', '@1001@', '2023-07-30 12:34:56');
 
 select * from Tclient
+SELECT * from Tvehicle
+select * from Tuser
+select * from Tprogramming

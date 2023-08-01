@@ -148,6 +148,7 @@ public class JPanelNewBus extends javax.swing.JPanel {
 
     
     VehicleController vehicleController;
+    public static int updateGetAll = 0;
 
     private void initController(){
         vehicleController = new VehicleController();

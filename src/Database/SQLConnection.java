@@ -9,7 +9,7 @@ public class SQLConnection {
 
     public static Connection openConnection() {
         if (conn == null) {
-            String url = "jdbc:sqlserver://127.0.0.1\\ASROCK\\SQLEXPRESS:1433;" +
+            String url = "jdbc:sqlserver://127.0.0.1\\Acer\\SQLEXPRESS:1433;" +
                     "databaseName=dbVentaBoletos;" +
                     "encrypt=false;" +
                     "trustServerCertificate=false";

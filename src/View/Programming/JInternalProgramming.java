@@ -1,19 +1,26 @@
 package View.Programming;
 
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
 
-import View.Home.JPanelMenu;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import Controller.ProgrammingController;
+import Controller.VehicleController;
+import Model.Entity.Programming;
+import Model.Entity.Vehicle;
 
 public class JInternalProgramming extends javax.swing.JInternalFrame {
 
-    private JPanelNewProgramming programming;
-    
     
     public JInternalProgramming() {
         initComponents();
-        this.programming = new JPanelNewProgramming();
-        showPanel();
-        initNewComponents();
+        showAll();
+        selectProgramming();
     }
 
     /**
@@ -28,14 +35,15 @@ public class JInternalProgramming extends javax.swing.JInternalFrame {
         jPanel_Fondo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel_Barra = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButtonNuevo = new javax.swing.JToggleButton();
         jPanel_lista = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTable = new javax.swing.JTable();
+        jButtonRemove = new javax.swing.JButton();
+        jButtonEdit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1320, 738));
         setPreferredSize(new java.awt.Dimension(1320, 738));
@@ -52,21 +60,22 @@ public class JInternalProgramming extends javax.swing.JInternalFrame {
         jPanel_Barra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jPanel_Barra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jToggleButton1.setText("NUEVA PROGRAMACIÓN");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jToggleButtonNuevo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jToggleButtonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/new.png"))); // NOI18N
+        jToggleButtonNuevo.setText("NUEVA PROGRAMACIÓN");
+        jToggleButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jToggleButtonNuevoActionPerformed(evt);
             }
         });
-        jPanel_Barra.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 340, 40));
+        jPanel_Barra.add(jToggleButtonNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, 230, 40));
 
         jPanel_Fondo.add(jPanel_Barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 1200, 40));
 
         jPanel_lista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de Prgramacion de Buses", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
         jPanel_lista.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -74,17 +83,24 @@ public class JInternalProgramming extends javax.swing.JInternalFrame {
                 "Nº", "UNIDAD BUS", "ORIGEN", "DESTINO", "FECHA", "HORA", "COSTO TOTAL", "ESTADO"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTable);
 
         jPanel_lista.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 760, 280));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Eliminar");
-        jPanel_lista.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, -1, -1));
+        jButtonRemove.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
+        jButtonRemove.setText("Eliminar");
+        jPanel_lista.add(jButtonRemove, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 440, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton2.setText("Editar");
-        jPanel_lista.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, -1, -1));
+        jButtonEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButtonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/modifity.png"))); // NOI18N
+        jButtonEdit.setText("Editar");
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditActionPerformed(evt);
+            }
+        });
+        jPanel_lista.add(jButtonEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 440, 120, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Buscar por:");
@@ -93,70 +109,174 @@ public class JInternalProgramming extends javax.swing.JInternalFrame {
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel_lista.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 170, -1));
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/update.png"))); // NOI18N
+        jButton1.setText("Actualizar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel_lista.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 440, -1, -1));
+
         jPanel_Fondo.add(jPanel_lista, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 800, 520));
+        jPanel_lista.getAccessibleContext().setAccessibleName(" ");
 
         getContentPane().add(jPanel_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void jToggleButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonNuevoActionPerformed
         // TODO add your handling code here:
-        programming.setVisible(true);
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        newProgramming();
+    }//GEN-LAST:event_jToggleButtonNuevoActionPerformed
 
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
+        // TODO add your handling code here:
+        editProgramming();
+    }//GEN-LAST:event_jButtonEditActionPerformed
 
-    //  ==========================================================
-    //  INTERAACION DE LAS NUEVAS COMPONNETES DE PARA EL JINTERNAL
-    //  ==========================================================
-    private void showPanel(){
-        jPanel_Fondo.add(programming, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130));
-        programming.setVisible(false);
-    }
-
-    private void initNewComponents(){
-        clickAdd ();
-        clickCancel();
-    }
-
-    private void clickAdd (){
-        JPanelNewProgramming.jButtonAdd.addMouseListener(new java.awt.event.MouseAdapter()  {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                Object[] options = {"Si, proceder","No, Cancelar"};
-                int confirmacion = JOptionPane.showOptionDialog(null, "¿Desea confirmar?", "Confirmación", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                // Procesar la opción seleccionada por el usuario
-                if (confirmacion == JOptionPane.YES_OPTION) {
-                    System.out.println("Confirmó");
-                } else if (confirmacion == JOptionPane.NO_OPTION) {
-                    System.out.println("No confirmó");
-                } else if (confirmacion == JOptionPane.CLOSED_OPTION) {
-                    System.out.println("Cerró el diálogo sin seleccionar ninguna opción");
-                }
-            }
-        });
-    }
-
-    private void clickCancel (){
-        JPanelNewProgramming.jButtonCancel.addMouseListener(new java.awt.event.MouseAdapter()  {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                programming.setVisible(false);
-            }
-        });
-    }
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        showAll();
+    }//GEN-LAST:event_jButton1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonEdit;
+    private javax.swing.JButton jButtonRemove;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel_Barra;
     private javax.swing.JPanel jPanel_Fondo;
     private javax.swing.JPanel jPanel_lista;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jToggleButtonNuevo;
     // End of variables declaration//GEN-END:variables
+
+
+    //  ================================================================================================
+    //  INTERAACION DE LAS NUEVAS COMPONNETES DE PARA EL JINTERNAL
+    //  ================================================================================================
+    private JPanelNewProgramming newProgramming;
+    private JPanelEditProgramming editProgramming;
+    //private JPanelDeleteProgramming deleteProgramming;
+    private DefaultTableModel model;
+    private ProgrammingController programmingController;
+    private VehicleController vehicleController;
+    private List<String> idProgramming; //Dato publico para pasar al Jpanel
+    String[] dataVehicle = null; //datos del vehiculo sin la id
+
+    //===============================
+    private String obtainIdProgramming = null;
+    private String numberProgramming  = null;
+    private BigDecimal costo = null;
+
+
+    private void newProgramming(){
+        editProgramming = null;
+        newProgramming = null;
+        //deleteProgramming = null;
+        newProgramming = new JPanelNewProgramming();
+        jPanel_Fondo.add(newProgramming, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130));
+        newProgramming.setVisible(true);
+    }
+
+    private void editProgramming(){
+        editProgramming = null;
+        newProgramming = null;
+        //deleteProgramming = null;
+
+        editProgramming = new JPanelEditProgramming(obtainIdProgramming, costo);
+        jPanel_Fondo.add(editProgramming, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130));
+        editProgramming.setVisible(true);
+    }
+
+    private void deleteProgramming(){
+        editProgramming = null;
+        newProgramming = null;
+        //deleteProgramming = null;
+        int filaSeleccionada = jTable.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+            model.removeRow(filaSeleccionada);
+        }
+    }
+
+    private String getVehicle(String id) {
+        vehicleController = null;
+        vehicleController = new VehicleController();
+        List<Vehicle> vehicles = vehicleController.getAll();
+        
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.isState() && vehicle.getIdVehicle().equals(id)) {
+                // Si encontramos el vehículo con la id proporcionada y está activo (state == true)
+                String model = vehicle.getModel();
+                String plate = vehicle.getPlate();
+                return (model + ", " + plate); // Devolvemos el modelo y la placa como un arreglo de Strings
+            }
+        }
+        return null; // Si no se encuentra el vehículo con la id proporcionada, retornamos null
+    }
+
+    private void showAll() {
+        programmingController = new ProgrammingController();
+        idProgramming = new ArrayList<>();
+        List<Programming> allProgrammings = programmingController.getAll();
+        
+  
+        model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0);
+    
+        int j = 0;
+        for (Programming programming : allProgrammings) {
+            idProgramming.add(programming.getIdProgramming());
+            Object[] rowData = { (1 + j),
+                                getVehicle(programming.getIdVehicle()),//programming.getIdVehicle(),
+                                programming.getOrigin(),
+                                programming.getDestination(),
+                                programming.getProgrammingDate(),
+                                programming.getProgrammingHour(),
+                                "S/ " + programming.getTotalCost(),
+                                programming.isState()
+            };
+            model.addRow(rowData);
+            j++;
+        }
+    }
+ 
+    // Otros metodos par la interacion de jInternal
+    private void selectProgramming(){
+        jTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int filaSeleccionada = jTable.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+                    // Obtener los valores de las celdas de la fila seleccionada
+                    numberProgramming = model.getValueAt(filaSeleccionada, 0).toString();
+                    String stringValue = model.getValueAt(filaSeleccionada, 6).toString();
+
+                    if (stringValue != null && stringValue.startsWith("S/ ")) {
+                        String numericValue = stringValue.substring(3);
+                        costo = new BigDecimal(numericValue);
+                    }
+
+                    int number  = Integer.parseInt(numberProgramming);
+                    int posicion = 1;
+                    for (String elemento : idProgramming) {
+
+                        if (number == posicion) {
+                            obtainIdProgramming = elemento;
+                            break;
+                        }
+                        posicion++;
+                    }
+                }
+            }
+        });
+    }
 }

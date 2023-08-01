@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ISA503-Desarrollo%20de%20Software%20I/Project/TicketSalesSystem/src/View/Home/JPanelMenu.java</file>
-            <file>file:/D:/ISA503-Desarrollo%20de%20Software%20I/Project/TicketSalesSystem/src/View/TicketSale/JInternalSaleTicket.java</file>
-            <file>file:/D:/ISA503-Desarrollo%20de%20Software%20I/Project/TicketSalesSystem/src/View/Home/JFrameHome.java</file>
+            <file>file:/D:/ISA503-Desarrollo%20de%20Software%20I/Project/TicketSalesSystem/src/View/Tickets/JInternalTicket.java</file>
+            <file>file:/D:/ISA503-Desarrollo%20de%20Software%20I/Project/TicketSalesSystem/src/View/Tickets/JPanelSell.java</file>
         </group>
     </open-files>
 </project-private>

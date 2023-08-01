@@ -7,7 +7,6 @@ import javax.swing.table.DefaultTableModel;
 
 import Controller.VehicleController;
 import Model.Entity.Vehicle;
-import View.Programming.JPanelNewProgramming;
 
 public class JInternalBuses extends javax.swing.JInternalFrame {
 
@@ -36,6 +35,7 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
+        jButton_Update = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(1320, 738));
         setPreferredSize(new java.awt.Dimension(1320, 738));
@@ -96,6 +96,15 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 660, 350));
 
+        jButton_Update.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton_Update.setText("Actualizar");
+        jButton_Update.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_UpdateMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, -1, -1));
+
         jPanel_Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 700, 480));
 
         getContentPane().add(jPanel_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1310, 710));
@@ -112,12 +121,18 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
         panelNewBus();
     }//GEN-LAST:event_jButton_NewMouseClicked
 
+    private void jButton_UpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_UpdateMouseClicked
+        // TODO add your handling code here:
+        getall();
+    }//GEN-LAST:event_jButton_UpdateMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton_New;
+    private javax.swing.JButton jButton_Update;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_Barra;
@@ -134,6 +149,7 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
     List<String> idVehicles;
     private JPanelNewBus jPanelNewBus;
 
+
     private void initController(){
         vehicleController = new VehicleController();
         idVehicles = new ArrayList<>();
@@ -143,7 +159,6 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
         getall();
     }
     
-
     private void panelNewBus(){
         jPanelNewBus.setVisible(true);
     }
@@ -151,6 +166,10 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
 
     private void getall(){
         DefaultTableModel model = (DefaultTableModel)jTable.getModel();
+
+        // Limpia el contenido de la jTable
+        model.setRowCount(0);
+
         List<Vehicle> vehicles = vehicleController.getAll();
         int cout = 1;
         String state;
@@ -176,5 +195,4 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
             cout++;
         }
     }
-
 }

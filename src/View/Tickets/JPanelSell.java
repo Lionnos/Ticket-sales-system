@@ -8,12 +8,12 @@ package View.Tickets;
  *
  * @author Acer
  */
-public class JPanelSaleTicket extends javax.swing.JPanel {
+public class JPanelSell extends javax.swing.JPanel {
 
     /**
      * Creates new form JPanelVentaPasajes
      */
-    public JPanelSaleTicket() {
+    public JPanelSell() {
         initComponents();
     }
 

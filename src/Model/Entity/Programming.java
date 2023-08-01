@@ -1,20 +1,21 @@
 package Model.Entity;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Programming {
     private String idProgramming;
     private String idVehicle;
     private String origin;
     private String destination;
-    private Timestamp programmingDate;
-    private Timestamp programmingHour;
+    private Date programmingDate;
+    private Time programmingHour;
     private BigDecimal totalCost;
     private boolean state;
 
     public Programming(String idProgramming, String idVehicle, String origin, String destination,
-                       Timestamp programmingDate, Timestamp programmingHour, BigDecimal totalCost, boolean state) {
+                       Date programmingDate, Time programmingHour, BigDecimal totalCost, boolean state) {
         this.idProgramming = idProgramming;
         this.idVehicle = idVehicle;
         this.origin = origin;
@@ -58,19 +59,19 @@ public class Programming {
         this.destination = destination;
     }
 
-    public Timestamp getProgrammingDate() {
+    public Date getProgrammingDate() {
         return programmingDate;
     }
 
-    public void setProgrammingDate(Timestamp programmingDate) {
+    public void setProgrammingDate(Date programmingDate) {
         this.programmingDate = programmingDate;
     }
 
-    public Timestamp getProgrammingHour() {
+    public Time getProgrammingHour() {
         return programmingHour;
     }
 
-    public void setProgrammingHour(Timestamp programmingHour) {
+    public void setProgrammingHour(Time programmingHour) {
         this.programmingHour = programmingHour;
     }
 

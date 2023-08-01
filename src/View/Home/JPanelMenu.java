@@ -1,9 +1,21 @@
 package View.Home;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import Controller.UserController;
+import Model.Entity.User;
+import Model.Entity.Vehicle;
+
 public class JPanelMenu extends javax.swing.JPanel {
+
+    UserController userController;
 
     public JPanelMenu() {
         initComponents();
+        user();
     }
 
     /**
@@ -24,7 +36,6 @@ public class JPanelMenu extends javax.swing.JPanel {
         jLabelBuses = new javax.swing.JLabel();
         jLabelInicio = new javax.swing.JLabel();
         jLabelUsers = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(44, 62, 80));
         setPreferredSize(new java.awt.Dimension(230, 740));
@@ -36,6 +47,7 @@ public class JPanelMenu extends javax.swing.JPanel {
         jLabelHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(jLabelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 50));
 
+        jLabelNombreUsuario.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelNombreUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/user.png"))); // NOI18N
         jLabelNombreUsuario.setText("Usuario");
         add(jLabelNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 230, 120));
@@ -117,19 +129,10 @@ public class JPanelMenu extends javax.swing.JPanel {
         jLabelUsers.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabelUsers.setIconTextGap(15);
         add(jLabelUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 230, 50));
-
-        jButton1.setBackground(new java.awt.Color(44, 62, 80));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/info.png"))); // NOI18N
-        jButton1.setText("Información");
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 230, 50));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     public static javax.swing.JLabel jLabelBuses;
     public static javax.swing.JLabel jLabelHome;
     public static javax.swing.JLabel jLabelInformation;
@@ -140,4 +143,38 @@ public class JPanelMenu extends javax.swing.JPanel {
     public static javax.swing.JLabel jLabelTicket;
     public static javax.swing.JLabel jLabelUsers;
     // End of variables declaration//GEN-END:variables
+
+
+    public static String idUser;
+    private String firstName;
+    private String lastName;
+    private boolean gender;
+    private String email;
+    private String username;
+    private String password;
+    private Date createdAt;
+
+
+    private void user(){
+        getUser();
+
+        String labelText = "<html><font size='6'><b>" + username+ "</b><br><font size='4'>" + firstName + "</font></html>";
+        jLabelNombreUsuario.setText(labelText);
+    }
+
+    private void getUser(){
+        userController = new UserController();
+        List<User> users = userController.getAll();
+
+        for (User user : users) {
+            idUser = user.getIdUser();
+            firstName = user.getFirstName();
+            lastName = user.getLastName();
+            gender = user.isGender();
+            email = user.getEmail();
+            username = user.getUsername();
+            password = user.getPassword();
+            createdAt = user.getCreatedAt();
+        }
+    }
 }
