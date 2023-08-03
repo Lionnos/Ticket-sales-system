@@ -100,6 +100,7 @@ public class JPanelNewBus extends javax.swing.JPanel {
         add(jButton_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 40, 70, 30));
 
         jButton_Aceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/acept.png"))); // NOI18N
         jButton_Aceptar.setText("Aceptar");
         jButton_Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +110,7 @@ public class JPanelNewBus extends javax.swing.JPanel {
         add(jButton_Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, -1));
 
         jButton_Cancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/cancel.png"))); // NOI18N
         jButton_Cancelar.setText("Cancelar");
         jButton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -97,13 +97,14 @@ public class JInternalBuses extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 660, 350));
 
         jButton_Update.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton_Update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/update.png"))); // NOI18N
         jButton_Update.setText("Actualizar");
         jButton_Update.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton_UpdateMouseClicked(evt);
             }
         });
-        jPanel1.add(jButton_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, -1, -1));
+        jPanel1.add(jButton_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, -1, -1));
 
         jPanel_Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 700, 480));
 

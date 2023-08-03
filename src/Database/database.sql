@@ -1,5 +1,8 @@
 create database dbVentaBoletos;
 
+use dbVentaBoletos;
+
+--TABLA PARA USUARIOS
 create table Tuser (
     idUser varchar(12) not null,
     first_name varchar(100) not null,
@@ -13,7 +16,7 @@ create table Tuser (
     primary key (idUser)
 );
 
-
+--TABLA PARA CLIENTES
 create table Tclient (
     idClient varchar(12) not null,
     first_name varchar(100) not null,
@@ -29,7 +32,7 @@ create table Tclient (
     primary key (idClient)
 );
 
-
+--TABLA PARA VEHICULOS
 create table Tvehicle (
     idVehicle varchar(12) not null,
     description text null,
@@ -41,7 +44,7 @@ create table Tvehicle (
     primary key (idVehicle)
 );
 
-
+--TABLA DE PROGRAMACION SEGUN EL VEHICULO
 create table Tprogramming (
     idProgramming varchar(12) not null,
     idVehicle varchar(12) not null,
@@ -56,7 +59,7 @@ create table Tprogramming (
     foreign key (idVehicle) references Tvehicle(idVehicle)
 );
 
-
+--TABLA PARA USUARIOS
 create table Tticket (
     idTicket varchar(12) not null,
     idUser varchar(12) not null,
@@ -78,28 +81,13 @@ create table Tticket (
     foreign Key (idProgramming) references Tprogramming(idProgramming)
 );
 
-
--- Inserciones
-INSERT INTO Tclient (idClient, first_name, last_name, document_type, document_number, ruc, business_name, gender, telephone, address)
-VALUES
-('1a2b3c4d-5e6l', 'John', 'Doe', 'DNI', 12345678901, NULL, NULL, 1, 123456789, '123 Main St'),
-('2m3n4o5p-6q7r', 'Jane', 'Smith', 'Passport', 98765432109, NULL, NULL, 0, 987654321, '456 Elm St'),
-('3a4b5c6d-7e8f', 'Michael', 'Johnson', 'DNI', 56789012345, NULL, NULL, 1, 567890123, '789 Oak St'),
-('4o5p6q7r-8s9t', 'Emily', 'Brown', 'Passport', 65432109876, NULL, NULL, 0, 654321098, '101 Pine St'),
-('5d6e7f8g-9h0i', 'David', 'Lee', 'DNI', 98765432100, 12345678901, 'ABC Corp', 1, 987654322, '222 Maple St');
-
+-- INSERTANDO USUARIO PARA REALIZAR LAS PRUEBAS
 INSERT INTO Tuser (idUser, first_name, last_name, gender, email, username, password, created_at)
 VALUES ('ea41c2ff614f', 'Henry', 'Leon', 1, 'Ghreengate@gmail.com', 'Lionos', '@1001@', '2023-07-30 12:34:56');
 
+-- PARA MOSTRAR TODAS LAS TABLAS
 select * from Tclient
 SELECT * from Tvehicle
 select * from Tuser
 select * from Tprogramming
 select * from Tticket
-
-SELECT  seat_number
-FROM Tticket
-WHERE idProgramming = '80319b11dc34';
-
-delete from Tticket
-where idTicket ='e7e6ab16e5d4'

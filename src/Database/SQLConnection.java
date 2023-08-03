@@ -13,10 +13,8 @@ public class SQLConnection {
                     "databaseName=dbVentaBoletos;" +
                     "encrypt=false;" +
                     "trustServerCertificate=false";
-
             String user = "Henry";
             String password = "@1001@";
-
             try {
                 conn = DriverManager.getConnection(url, user, password);
                 System.out.println("Conexion Exitosa");
@@ -24,10 +22,8 @@ public class SQLConnection {
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-
             comprobar();
         }
-
         return conn;
     }
 
@@ -39,20 +35,19 @@ public class SQLConnection {
             } catch (SQLException ex) {
                 System.out.println("Error al cerrar la conexion: " + ex.getMessage());
             } finally {
-                conn = null; // Establecer a null para indicar que no hay una conexion activa
+                conn = null;
             }
         }
     }
 
     static void comprobar() {
-        // Cargar el Controlador
         try {
             String controlador = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
             Class.forName(controlador);
             System.out.println("Controlador Cargado");
         } catch (Exception e) {
             System.out.println("Error al cargar el controlador");
-            return; // Salir del metodo en caso de error
+            return;
         }
     }
 }
