@@ -195,6 +195,8 @@ public class JFrameHome extends javax.swing.JFrame {
         selectUser();
         selectBus();
         selectReport();
+        
+        configInternal(Inicio, true);
     }
     
     public void slider(){

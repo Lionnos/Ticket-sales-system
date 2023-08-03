@@ -1,5 +1,7 @@
 package View.Tickets;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
@@ -276,6 +278,16 @@ public class JPanelSell extends javax.swing.JPanel {
         int confirmacion = JOptionPane.showOptionDialog(null, "¿Desea confirmar?", "Confirmación", JOptionPane.NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (confirmacion == JOptionPane.YES_OPTION) {
             venderBoleto();
+            this.setVisible(false);
+            /*
+            JInternalTicket.jComboBoxBUS.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JInternalTicket.MinibusSimulation();
+                }
+            });*/
+            JInternalTicket.upColor();
+            JInternalTicket.MinibusSimulation();
         }
     }
     private void onclickCancel(){

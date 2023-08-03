@@ -3,9 +3,11 @@ package View.Tickets;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabelVenta = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jComboBoxBUS = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jPanelBUS = new javax.swing.JPanel();
@@ -86,6 +89,14 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         jLabel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel_Barra.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 150, 40));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/update.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel_Barra.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 30, 40));
+
         jPanel_Fondo.add(jPanel_Barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 820, 40));
 
         jComboBoxBUS.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -108,6 +119,11 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         panelVenta();
     }//GEN-LAST:event_jLabelVentaMouseClicked
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        getProgramming();
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     private void panelVenta(){
         jpanelSell = null;
         jpanelSell = new JPanelSell();
@@ -121,16 +137,17 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelVenta;
-    private javax.swing.JPanel jPanelBUS;
+    public static javax.swing.JPanel jPanelBUS;
     private javax.swing.JPanel jPanel_Barra;
     private javax.swing.JPanel jPanel_Fondo;
     // End of variables declaration//GEN-END:variables
 
 
 
-    List<Integer> seats;
+    private static List<Integer> seats;
 
     private void initNewComponets(){
         getSeatForID();
@@ -138,7 +155,7 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         MinibusSimulation();
     }
 
-    private void MinibusSimulation() {
+    public static void MinibusSimulation() {
         jPanelBUS.removeAll();
         
         jPanelBUS.setLayout(new GridLayout(7, 3, 15, 15)); // 7 filas (asientos), 3 columnas, espacio horizontal y vertical de 15 píxeles
@@ -154,7 +171,16 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
                 }
                 JButton seatButton = null;
                 seatButton = new JButton(seatLabel);
-                seatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/seat.png")));
+                
+                
+                String imagePath = "/Icons/seat.png"; // Assuming the image is in the "Icons" folder relative to your class
+                java.net.URL imageUrl = JInternalTicket.class.getResource(imagePath);
+                if (imageUrl != null) {
+                    seatButton.setIcon(new ImageIcon(imageUrl));
+                } else {
+                    System.err.println("Image not found: " + imagePath);
+                }
+                //seatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/seat.png")));
                 seatButton.setHorizontalAlignment(SwingConstants.RIGHT);
                 seatButton.setBackground(new Color(46, 204, 113));
 
@@ -198,6 +224,13 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
                 MinibusSimulation();
             }
         });
+    }
+
+    public static void upColor(){
+                seats = null;
+                seats = new ArrayList<>();
+                String id = (String) jComboBoxBUS.getSelectedItem();
+                seats = getProgramming.getSeatNumbersByProgrammingId(id);
     }
     
     private void getProgramming(){

@@ -96,3 +96,10 @@ SELECT * from Tvehicle
 select * from Tuser
 select * from Tprogramming
 select * from Tticket
+
+SELECT  seat_number
+FROM Tticket
+WHERE idProgramming = '80319b11dc34';
+
+delete from Tticket
+where idTicket ='e7e6ab16e5d4'
