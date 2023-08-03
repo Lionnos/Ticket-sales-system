@@ -95,3 +95,4 @@ select * from Tclient
 SELECT * from Tvehicle
 select * from Tuser
 select * from Tprogramming
+select * from Tticket

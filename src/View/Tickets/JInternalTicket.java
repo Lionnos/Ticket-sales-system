@@ -1,13 +1,23 @@
 package View.Tickets;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import Controller.ProgrammingController;
+import Model.Entity.Programming;
 
 public class JInternalTicket extends javax.swing.JInternalFrame {
 
@@ -16,7 +26,7 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
     
     public JInternalTicket() {
         initComponents();
-        MinibusSimulation();
+        initNewComponets();
     }
 
     /**
@@ -34,7 +44,7 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabelVenta = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxBUS = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jPanelBUS = new javax.swing.JPanel();
 
@@ -78,13 +88,12 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
 
         jPanel_Fondo.add(jPanel_Barra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 820, 40));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel_Fondo.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 20, 230, -1));
+        jComboBoxBUS.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel_Fondo.add(jComboBoxBUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, 290, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("BUS :");
-        jPanel_Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 30, -1, -1));
+        jPanel_Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         jPanelBUS.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jPanel_Fondo.add(jPanelBUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 70, 300, 600));
@@ -108,7 +117,7 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBoxBUS;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -120,8 +129,19 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
 
-    public void MinibusSimulation() {
-        jPanelBUS.setLayout(new GridLayout(7, 3, 15, 15)); // 7 filas (asientos), 3 columnas, espacio horizontal y vertical de 20 píxeles
+
+    List<Integer> seats;
+
+    private void initNewComponets(){
+        getSeatForID();
+        getProgramming();
+        MinibusSimulation();
+    }
+
+    private void MinibusSimulation() {
+        jPanelBUS.removeAll();
+        
+        jPanelBUS.setLayout(new GridLayout(7, 3, 15, 15)); // 7 filas (asientos), 3 columnas, espacio horizontal y vertical de 15 píxeles
 
         for (int row = 1; row <= 7; row++) {
             for (int col = 1; col <= 3; col++) {
@@ -130,15 +150,63 @@ public class JInternalTicket extends javax.swing.JInternalFrame {
                 if (seatNumber - 1 == 0) {
                     seatLabel = "Chofer";
                 } else {
-                    seatLabel = (seatNumber - 1)+"";
+                    seatLabel = String.valueOf(seatNumber - 1);
                 }
-                JButton seatButton = new JButton(seatLabel); // Puedes usar JLabel u otro componente según tus necesidades
+                JButton seatButton = null;
+                seatButton = new JButton(seatLabel);
                 seatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/seat.png")));
-                seatButton.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT); // Colocar el texto a la derecha de la imagen
+                seatButton.setHorizontalAlignment(SwingConstants.RIGHT);
+                seatButton.setBackground(new Color(46, 204, 113));
+
+                for (int randomSeat : seats) {
+                    System.out.println(randomSeat);
+                    if ((seatNumber-1) == randomSeat) {
+                        seatButton.setBackground(new Color(231, 76, 60));
+                        break;
+                    } else {
+                        seatButton.setBackground(new Color(46, 204, 113));
+                    }
+                }
+
+                seatButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JButton clickedButton = (JButton) e.getSource();
+                        String label = clickedButton.getText();
                 
-                seatButton.setBackground(new Color(46, 204, 113)); // Establecer el color de fondo verde con RGB
+                        JPanelSell.jLabelSeatNumber.setText(label);
+                    
+                        System.out.println("Se hizo clic en el botón: " + label);
+                    }
+                });
                 jPanelBUS.add(seatButton);
+
             }
+        }
+        jPanelBUS.revalidate(); 
+    }
+    
+    private void getSeatForID(){
+        jComboBoxBUS.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seats = null;
+                seats = new ArrayList<>();
+
+                String id = (String) jComboBoxBUS.getSelectedItem();
+                seats = getProgramming.getSeatNumbersByProgrammingId(id);
+                MinibusSimulation();
+            }
+        });
+    }
+    
+    private void getProgramming(){
+        getProgramming.getIdProgramming();
+        List<String> elements = getProgramming.idProgrammingList;
+        jComboBoxBUS.removeAllItems();
+
+        for (String idProgramming : elements) {
+            jComboBoxBUS.addItem(idProgramming);
         }
     }
 }

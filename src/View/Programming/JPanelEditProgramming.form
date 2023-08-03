@@ -81,7 +81,7 @@
             <StringItem index="1" value="Andahuaylas"/>
             <StringItem index="2" value="Antabamba"/>
             <StringItem index="3" value="Aymaraes"/>
-            <StringItem index="4" value="otabambas"/>
+            <StringItem index="4" value="Cotabambas"/>
             <StringItem index="5" value="Chincheros"/>
             <StringItem index="6" value="Grau"/>
           </StringArray>
@@ -190,7 +190,7 @@
             <StringItem index="1" value="Andahuaylas"/>
             <StringItem index="2" value="Antabamba"/>
             <StringItem index="3" value="Aymaraes"/>
-            <StringItem index="4" value="otabambas"/>
+            <StringItem index="4" value="Cotabambas"/>
             <StringItem index="5" value="Chincheros"/>
             <StringItem index="6" value="Grau"/>
           </StringArray>
@@ -257,7 +257,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="jComboBoxEstado">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>

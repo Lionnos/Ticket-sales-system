@@ -5,11 +5,11 @@ public class Client {
     private String firstName;
     private String lastName;
     private String documentType;
-    private Long documentNumber; // Cambiado a Long para acomodar el tamaño 15
+    private Long documentNumber;
     private Long ruc; 
     private String businessName;
     private boolean gender;
-    private int telephone; // Cambiado a int para acomodar el tamaño 9
+    private int telephone;
     private String address;
 
     public Client(String idClient, String firstName, String lastName, String documentType,
@@ -28,7 +28,10 @@ public class Client {
         this.address = address;
     }
 
-    // Getters and Setters
+    public Client (){
+
+    }
+
     public String getIdClient() {
         return idClient;
     }

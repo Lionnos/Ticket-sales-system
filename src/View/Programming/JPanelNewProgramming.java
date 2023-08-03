@@ -76,7 +76,7 @@ public class JPanelNewProgramming extends javax.swing.JPanel {
         add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 120, 40));
 
         jComboBoxDESTINO.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxDESTINO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "otabambas", "Chincheros", "Grau" }));
+        jComboBoxDESTINO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "Cotabambas", "Chincheros", "Grau" }));
         add(jComboBoxDESTINO, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 190, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -103,7 +103,7 @@ public class JPanelNewProgramming extends javax.swing.JPanel {
         add(jComboBoxBUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 230, -1));
 
         jComboBoxORIGEN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxORIGEN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "otabambas", "Chincheros", "Grau" }));
+        jComboBoxORIGEN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "Cotabambas", "Chincheros", "Grau" }));
         add(jComboBoxORIGEN, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 190, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N

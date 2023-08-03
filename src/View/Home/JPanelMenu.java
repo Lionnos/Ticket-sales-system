@@ -37,7 +37,7 @@ public class JPanelMenu extends javax.swing.JPanel {
         jLabelInicio = new javax.swing.JLabel();
         jLabelUsers = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(44, 62, 80));
+        setBackground(new java.awt.Color(33, 47, 61));
         setPreferredSize(new java.awt.Dimension(230, 740));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

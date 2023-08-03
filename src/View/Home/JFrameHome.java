@@ -54,7 +54,7 @@ public class JFrameHome extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel_Menu.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel_Menu.setBackground(new java.awt.Color(97, 106, 107));
         jPanel_Menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Home/Icons/salir.png"))); // NOI18N

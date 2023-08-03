@@ -3,14 +3,17 @@ package Model.Query;
 import Database.SQLConnection;
 import Model.Entity.Ticket;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
+import java.sql.Time;
 
-public class QTicket implements QGeneric<Ticket>{
+public class QTicket implements QGeneric<Ticket> {
 
     private Connection connection;
 
@@ -21,7 +24,7 @@ public class QTicket implements QGeneric<Ticket>{
     @Override
     public void create(Ticket ticket) {
         try {
-            String query = "INSERT INTO ticket (idTicket, idUser, idClient, idProgramming, description, " +
+            String query = "INSERT INTO Tticket (idTicket, idUser, idClient, idProgramming, description, " +
                     "destination, seat_number, created_at, travel_date, departure_time, money_type, " +
                     "price, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -33,9 +36,9 @@ public class QTicket implements QGeneric<Ticket>{
             statement.setString(5, ticket.getDescription());
             statement.setString(6, ticket.getDestination());
             statement.setInt(7, ticket.getSeatNumber());
-            statement.setTimestamp(8, new java.sql.Timestamp(ticket.getCreatedAt().getTime()));
-            statement.setTimestamp(9, new java.sql.Timestamp(ticket.getTravelDate().getTime()));
-            statement.setTimestamp(10, new java.sql.Timestamp(ticket.getDepartureTime().getTime()));
+            statement.setDate(8, ticket.getCreatedAt());
+            statement.setDate(9, ticket.getTravelDate());
+            statement.setTime(10, ticket.getDepartureTime());
             statement.setString(11, ticket.getMoneyType());
             statement.setBigDecimal(12, ticket.getPrice());
             statement.setBoolean(13, ticket.isState());
@@ -52,7 +55,7 @@ public class QTicket implements QGeneric<Ticket>{
     @Override
     public void update(Ticket ticket) {
         try {
-            String query = "UPDATE ticket SET idUser = ?, idClient = ?, idProgramming = ?, " +
+            String query = "UPDATE Tticket SET idUser = ?, idClient = ?, idProgramming = ?, " +
                     "description = ?, destination = ?, seat_number = ?, created_at = ?, " +
                     "travel_date = ?, departure_time = ?, money_type = ?, price = ?, state = ? " +
                     "WHERE idTicket = ?";
@@ -64,9 +67,9 @@ public class QTicket implements QGeneric<Ticket>{
             statement.setString(4, ticket.getDescription());
             statement.setString(5, ticket.getDestination());
             statement.setInt(6, ticket.getSeatNumber());
-            statement.setTimestamp(7, new java.sql.Timestamp(ticket.getCreatedAt().getTime()));
-            statement.setTimestamp(8, new java.sql.Timestamp(ticket.getTravelDate().getTime()));
-            statement.setTimestamp(9, new java.sql.Timestamp(ticket.getDepartureTime().getTime()));
+            statement.setDate(7, ticket.getCreatedAt());
+            statement.setDate(8, ticket.getTravelDate());
+            statement.setTime(9, ticket.getDepartureTime());
             statement.setString(10, ticket.getMoneyType());
             statement.setBigDecimal(11, ticket.getPrice());
             statement.setBoolean(12, ticket.isState());
@@ -84,7 +87,7 @@ public class QTicket implements QGeneric<Ticket>{
     @Override
     public void delete(String idTicket) {
         try {
-            String query = "DELETE FROM ticket WHERE idTicket = ?";
+            String query = "DELETE FROM Tticket WHERE idTicket = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, idTicket);
 
@@ -102,7 +105,7 @@ public class QTicket implements QGeneric<Ticket>{
         List<Ticket> tickets = new ArrayList<>();
 
         try {
-            String query = "SELECT * FROM ticket";
+            String query = "SELECT * FROM Tticket";
             PreparedStatement statement = connection.prepareStatement(query);
 
             ResultSet resultSet = statement.executeQuery();
@@ -126,7 +129,7 @@ public class QTicket implements QGeneric<Ticket>{
         Ticket ticket = null;
 
         try {
-            String query = "SELECT * FROM ticket WHERE idTicket = ?";
+            String query = "SELECT * FROM Tticket WHERE idTicket = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, idTicket);
 
@@ -153,11 +156,11 @@ public class QTicket implements QGeneric<Ticket>{
         String description = resultSet.getString("description");
         String destination = resultSet.getString("destination");
         int seatNumber = resultSet.getInt("seat_number");
-        java.sql.Timestamp createdAt = resultSet.getTimestamp("created_at");
-        java.sql.Timestamp travelDate = resultSet.getTimestamp("travel_date");
-        java.sql.Timestamp departureTime = resultSet.getTimestamp("departure_time");
+        Date createdAt = resultSet.getDate("created_at");
+        Date travelDate = resultSet.getDate("travel_date");
+        Time departureTime = resultSet.getTime("departure_time");
         String moneyType = resultSet.getString("money_type");
-        java.math.BigDecimal price = resultSet.getBigDecimal("price");
+        BigDecimal price = resultSet.getBigDecimal("price");
         boolean state = resultSet.getBoolean("state");
 
         return new Ticket(idTicket, idUser, idClient, idProgramming, description, destination, seatNumber,

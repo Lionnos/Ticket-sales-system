@@ -26,7 +26,10 @@ public class Programming {
         this.state = state;
     }
 
-    // Getters and Setters
+    public Programming(){
+
+    }
+
     public String getIdProgramming() {
         return idProgramming;
     }

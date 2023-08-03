@@ -24,7 +24,6 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    // Getters and Setters
     public String getIdUser() {
         return idUser;
     }

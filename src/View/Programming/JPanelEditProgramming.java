@@ -50,7 +50,7 @@ public class JPanelEditProgramming extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jComboBoxHORA = new javax.swing.JComboBox<>();
         jTextFieldFECHA = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBoxEstado = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(420, 520));
@@ -78,7 +78,7 @@ public class JPanelEditProgramming extends javax.swing.JPanel {
         add(jButtonAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 440, 120, 40));
 
         jComboBoxDESTINO.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxDESTINO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "otabambas", "Chincheros", "Grau" }));
+        jComboBoxDESTINO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "Cotabambas", "Chincheros", "Grau" }));
         add(jComboBoxDESTINO, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 190, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -105,7 +105,7 @@ public class JPanelEditProgramming extends javax.swing.JPanel {
         add(jComboBoxBUS, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 240, -1));
 
         jComboBoxORIGEN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBoxORIGEN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "otabambas", "Chincheros", "Grau" }));
+        jComboBoxORIGEN.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "Cotabambas", "Chincheros", "Grau" }));
         add(jComboBoxORIGEN, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 190, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -119,9 +119,9 @@ public class JPanelEditProgramming extends javax.swing.JPanel {
         jTextFieldFECHA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(jTextFieldFECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 190, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
-        add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 190, -1));
+        jComboBoxEstado.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
+        add(jComboBoxEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 190, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("ESTADO");
@@ -142,9 +142,9 @@ public class JPanelEditProgramming extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton jButtonAdd;
     public static javax.swing.JButton jButtonCancel;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBoxBUS;
     private javax.swing.JComboBox<String> jComboBoxDESTINO;
+    private javax.swing.JComboBox<String> jComboBoxEstado;
     private javax.swing.JComboBox<String> jComboBoxHORA;
     private javax.swing.JComboBox<String> jComboBoxORIGEN;
     private javax.swing.JLabel jLabel1;
@@ -223,6 +223,13 @@ public class JPanelEditProgramming extends javax.swing.JPanel {
         destination = (String) jComboBoxDESTINO.getSelectedItem();
         String getDate = jTextFieldFECHA.getText();
         String getHour = (String) jComboBoxHORA.getSelectedItem();
+
+        String select = (String)jComboBoxEstado.getSelectedItem();
+        if (select == "Activo") {
+            state = true;
+        }else if( select == "Inactivo"){
+            state = false;
+        }
 
         programmingDate = Date.valueOf(getDate);
         programmingHour = Time.valueOf(getHour);

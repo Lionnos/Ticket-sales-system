@@ -1,7 +1,8 @@
 package Model.Entity;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Ticket {
     private String idTicket;
@@ -11,16 +12,16 @@ public class Ticket {
     private String description;
     private String destination;
     private int seatNumber;
-    private Timestamp createdAt;
-    private Timestamp travelDate;
-    private Timestamp departureTime;
+    private Date createdAt;
+    private Date travelDate;
+    private Time departureTime;
     private String moneyType;
     private BigDecimal price;
     private boolean state;
 
     public Ticket(String idTicket, String idUser, String idClient, String idProgramming,
-                  String description, String destination, int seatNumber, Timestamp createdAt,
-                  Timestamp travelDate, Timestamp departureTime, String moneyType, BigDecimal price,
+                  String description, String destination, int seatNumber, Date createdAt,
+                  Date travelDate, Time departureTime, String moneyType, BigDecimal price,
                   boolean state) {
         this.idTicket = idTicket;
         this.idUser = idUser;
@@ -37,7 +38,10 @@ public class Ticket {
         this.state = state;
     }
 
-    // Getters and Setters
+    public Ticket(){
+
+    }
+    
     public String getIdTicket() {
         return idTicket;
     }
@@ -94,27 +98,27 @@ public class Ticket {
         this.seatNumber = seatNumber;
     }
 
-    public Timestamp getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getTravelDate() {
+    public Date getTravelDate() {
         return travelDate;
     }
 
-    public void setTravelDate(Timestamp travelDate) {
+    public void setTravelDate(Date travelDate) {
         this.travelDate = travelDate;
     }
 
-    public Timestamp getDepartureTime() {
+    public Time getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Timestamp departureTime) {
+    public void setDepartureTime(Time departureTime) {
         this.departureTime = departureTime;
     }
 
