@@ -6,6 +6,3 @@
     + Para iniciar el programa: dirigete a la ruta "/View/Home/JFrameHome.java"
     + Por ultimo se trabjo con JAVA , JDK 20
     
-
-# NOTA:
-    + El proyecto finalizo por esta temporada continuara...
